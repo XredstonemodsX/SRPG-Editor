@@ -37,8 +37,7 @@ var Trigger = {
 //    SKILL_DAMAGE         : { name: 'Skill Damage',         container: true, construct: TriggerSkillDamage        },
 //    TOOK_PHYSICAL_DAMAGE : { name: 'Took Physical Damage', container: true, construct: TriggerTookPhysicalDamage },
 //    TOOK_SKILL_DAMAGE    : { name: 'Took Skill Damage',    container: true, construct: TriggerTookSkillDamage    },
-    MOVING_LOGIC     : { name: 'Moving Logic',     container: true, construct: MovingLogic            },
-    NPC_CLONE  : { name: 'NPC Clone',   container: false, construct: NPCClone   },
+    NPC_CLONE  : { name: 'Spawn Location',   container: false, construct: SpawnLocation  },
     DROPPED_ITEM : { name: 'Dropped Item', container: false, construct: DroppedItem }
 };
 
@@ -55,9 +54,6 @@ var Target = {
 //    REMEMBER : { name: 'Remember', container: true, construct: TargetRemember },
 //     SELF     : { name: 'Self',     container: true, construct: TargetSelf     },
 //    SINGLE   : { name: 'Single',   container: true, construct: TargetSingle   },
-    MOVING_PATH_STEP   : { name: 'Moving Path Step',   container: false, construct: MovingPathStep   },
-    WANDERING_DISTANCE   : { name: 'Wandering Distance',   container: false, construct: WanderingDistance   },
-    PATH_SETTINGS  : { name: 'Moving Path Options',   container: false, construct: MovingPathSettings   },
 };
 
 /**
@@ -644,23 +640,13 @@ function TriggerPhysicalDamage()
         .setTooltip('The maximum damage that needs to be dealt')
     );
 }
-extend('MovingLogic', 'Component');
-function MovingLogic()
+
+extend('SpawnLocation', 'Component');
+function SpawnLocation()
 {
-    this.super('MovingLogic', Type.TRIGGER, true);
+    this.super('SpawnLocation', Type.TARGET, false);
     
-    this.description = 'Define the NPCs moving logic.';
-    
-    this.data.push(new ListValue('Moving Type', 'movingType', [ 'NONE', 'WANDERING', 'MOVINGPATH' ], 'NONE')
-        .setTooltip('Sets the NPC to move, or not, and if so, the way it behaves. You will need to define valid moving child settings for this.')
-    ); 
-}
-extend('NPCClone', 'Component');
-function NPCClone()
-{
-    this.super('NPCClone', Type.TARGET, false);
-    
-    this.description = 'Define an additional NPC clone.<br/><font color="red">Setting any of the below options to NONE will cause them to inherit from the parent config file, with the exception of the spawn location details and Faction.</font>';
+    this.description = 'Define an additional NPC spawn location.<br/><font color="red">Setting any of the below options to NONE will cause them to inherit from the parent config file, with the exception of the spawn location details and Faction.</font>';
     
     this.data.push(new StringValue('Name', 'name', 'NONE').setTooltip('Name of the cloned NPC.'));
     this.data.push(new StringValue('Title', 'title', 'NONE').setTooltip('Title of the cloned NPC.'));
@@ -676,6 +662,7 @@ function NPCClone()
     this.data.push(new ListValue('Faction', 'faction', factionList, 'Faction').setTooltip('The item that represents the class in GUIs'));
     
 }
+
 
 extend('DroppedItem', 'Component');
 function DroppedItem()
@@ -742,54 +729,6 @@ function TriggerTookSkillDamage()
     );
     this.data.push(new DoubleValue("Max Damage", "dmg-max", 999)
         .setTooltip('The maximum damage that needs to be dealt')
-    );
-}
-
-extend('MovingPathStep', 'Component');
-function MovingPathStep()
-{
-    this.super('MovingPathStep', Type.TARGET, false);
-    
-    this.description = 'Adds a step to a moving path.<br/>'
-            + '<b><font color="red">Depends on:</font></b>Movement Logic\'s movement type setting being set to MOVINGPATH<br/>'
-            + '<b><font color="blue">NOTE:</font></b>NPCs will load and utilise all steps in the order they appear in the SRPG editor unless the backtrack while following path option is set via a Moving Path Options setting.';
-    
-    this.data.push(new IntValue("PositionX", "posX", 0)
-        .setTooltip('Sets the X Coordinate for this moving path step.')
-    );
-    this.data.push(new IntValue("Position Y", "posY", 0)
-        .setTooltip('Sets the Y Coordinate for this moving path step.')
-    );
-    this.data.push(new IntValue("Position Z", "posZ", 0)
-        .setTooltip('Sets the Z Coordinate for this moving path step.')
-    );
-}
-extend('WanderingDistance', 'Component');
-function WanderingDistance()
-{
-    this.super('WanderingDistance', Type.TARGET, false);
-    
-    this.description = 'Defines the wandering distance for an NPC.';
-    
-    this.data.push(new IntValue("Wandering Distance", "wanderDistance", 16)
-        .setTooltip('Sets the distance an NPC can wander. (Requires the parent Moving Logic setting be set to WANDERING).')
-    );
-}
-extend('MovingPathSettings', 'Component');
-function MovingPathSettings()
-{
-    this.super('MovingPathSettings', Type.TARGET, false);
-    
-        this.description = 'Defines the options available for an NPC following a path.<br/>'
-            + '<b><font color="red">Depends on:</font></b>Movement Logic\'s movement type setting being set to MOVINGPATH<br/>'
-            + '<b><font color="blue">NOTE:</font></b>Only one of these options can exist on an NPC.';
-    
-    this.data.push(new ListValue("Backtrack while following path", "backtrackWhileFollowingPath", ["YES", "NO" ], "NO")
-        .setTooltip('Sets whether or not an NPC backtracks while following a moving path.')
-    );
-    
-    this.data.push(new ListValue("Pause while following path", "pauseWhileFollowingPath", ["YES", "NO" ], "NO")
-        .setTooltip('Sets whether or not an NPC pauses while following a moving path.')
     );
 }
 // -- Target constructors ------------------------------------------------------ //

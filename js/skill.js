@@ -118,8 +118,10 @@ function Skill(name)
                 new ListValue('Respawns at original spawn location', 'respawnsAtSpawn', ['YES', 'NO' ], 'YES').setTooltip('Whether or not the class requires a permission to be professed as. The permission would be "skillapi.class.{className}"'),
                 new ListValue('Dead body is hidden', 'hideDeadBody', ['YES', 'NO' ], 'NO').setTooltip('Whether or not the class requires a permission to be professed as. The permission would be "skillapi.class.{className}"'),
                 new ListValue('Naturally Despawns', 'naturallyDespawns', ['YES', 'NO' ], 'NO').setTooltip('Whether or not the class requires a permission to be professed as. The permission would be "skillapi.class.{className}"'),
-		new ListValue('Faction Importance', 'factionImportance', [ 'NONE', 'LOWEST', 'LOW', 'MEDIUM','HIGH', 'HIGHEST' ], 'NONE').setTooltip('Faction Importance controls the amount of reputation granted or lost from the faction this NPC belongs to when it is killed. It also affects the reputation with this factions enemies.'),
-		new ListValue('Movement Speed', 'movementSpeed', [ 'SLOWEST', 'SLOW', 'NORMAL', 'FAST', 'FASTEST' ], 'NORMAL').setTooltip('Whether or not the class requires a permission to be professed as. The permission would be "skillapi.class.{className}"'),
+		
+                new ListValue('Faction Importance', 'factionImportance', [ 'NONE', 'LOWEST', 'LOW', 'MEDIUM','HIGH', 'HIGHEST' ], 'NONE').setTooltip('Faction Importance controls the amount of reputation granted or lost from the faction this NPC belongs to when it is killed. It also affects the reputation with this factions enemies.'),
+                new ListValue('XP Dropped on Death', 'xpReward', experienceList, '0').setTooltip('Faction Importance controls the amount of reputation granted or lost from the faction this NPC belongs to when it is killed. It also affects the reputation with this factions enemies.'),
+                new ListValue('Movement Speed', 'movementSpeed', [ 'SLOWEST', 'SLOW', 'NORMAL', 'FAST', 'FASTEST' ], 'NORMAL').setTooltip('Whether or not the class requires a permission to be professed as. The permission would be "skillapi.class.{className}"'),
                 new ListValue('Movement Type', 'movementType', [ 'NONE', 'WANDERING', 'MOVINGPATH' ], 'Select a movement type').setTooltip('Defines whether or not this NPC can move, and if so, how it behaves.'),
 		new ListValue('Wandering Distance', 'wanderingDistance', wanderingList, '1').setTooltip('This is a predefined list of items and weapons NPCs are allowed to hold.')
 

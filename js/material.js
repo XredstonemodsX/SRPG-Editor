@@ -54,6 +54,7 @@ var chanceList = range(0, 100);
 var stackList = range(1,64);
 var wanderingList = range(1,128);
 var damageList = range(0,10000);
+var experienceList = range(0,1000);
 
 var dimensionList = [
     "Earth"
