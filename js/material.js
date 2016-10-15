@@ -23,6 +23,10 @@ var itemList = [
     "flansmod:matokStaff"
 ];
 
+var soundList = [
+    "NONE"
+];
+
 var factionList = [
     'Stargate Command',
     'Atlantis Expedition',

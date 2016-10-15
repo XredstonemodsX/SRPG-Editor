@@ -26,15 +26,13 @@ function Skill(name)
 		new StringValue('Name', 'name', name).setTooltip('The name of the class. This should not contain color codes'),
 		new StringValue('Title', 'title', 'NONE').setTooltip('The prefix given to players who profess as the class which can contain color codes'),
 		new StringValue('Template', 'template', 'NONE').setTooltip('A class group are things such as "race", "class", and "trade". Different groups can be professed through at the same time, one class from each group'),
-                new ListValue('Texture Type', 'textureType', [ 'WEB', 'RESOURCE' ], 'TextureUri Type'),
+                new ListValue('Texture Type', 'textureType', [ 'WEB', 'RESOURCE' ], 'RESOURCE').setTooltip('Set the texture link type.'),
 		new StringValue('Texture Link', 'textureUri', 'NONE').setTooltip('A class group are things such as "race", "class", and "trade". Different groups can be professed through at the same time, one class from each group'),
 		new StringValue('Cape Texture Link', 'capeTexture', 'NONE').setTooltip('A class group are things such as "race", "class", and "trade". Different groups can be professed through at the same time, one class from each group'),
 		new StringValue('Overlay Texture Link', 'overlayTexture', 'NONE').setTooltip('A class group are things such as "race", "class", and "trade". Different groups can be professed through at the same time, one class from each group'),
 		new ListValue('Faction', 'faction', factionList, 'Faction').setTooltip('The item that represents the class in GUIs'),
 		new ListValue('Rotation Behavior', 'rotationBehavior', ['HeadRotation', 'NoRotation', 'RotateBody', 'Stalking' ], 'NoRotation').setTooltip('Whether or not the class requires a permission to be professed as. The permission would be "skillapi.class.{className}"'),
                 new IntValue('Rotation Angle', 'rotation', 0).setTooltip('The maximum level the class can reach. If this class turns into other classes, this will also be the level it can profess into those classes.'),
-		new ListValue('Job', 'job', jobList, 'None').setTooltip('The item that represents the class in GUIs'),
-		new ListValue('Role', 'role', roleList, 'None').setTooltip('The item that represents the class in GUIs'),
 		new ListValue('Visible', 'visible', ['YES', 'NO', 'PARTIAL' ], 'YES').setTooltip('Whether or not the class requires a permission to be professed as. The permission would be "skillapi.class.{className}"'),
                 new ListValue('Model', 'modelType', modelList, 'NONE').setTooltip('The model that this NPC uses. This can be one of many used in-game.'),
                 new ListValue('Gender', 'gender', [ 'MALE', 'FEMALE' ], 'MALE'),
@@ -99,31 +97,27 @@ function Skill(name)
 		new ListValue('Ranged Projectile Appearance', 'projectileAppearance', ['ARROW', 'BULLET', 'BLUEPLASMA', 'REDPLASMA', 'WHITEPLASMA' , 'GOLDPLASMA'], 'ARROW').setTooltip('What does the projectile this NPC has appear to look like?'),
 		new ListValue('Ranged Projectile Size', 'projectileSize', ['TINY' , 'SMALL', 'MEDIUM', 'LARGE', 'HUGE' ], 'TINY').setTooltip('What is the size of the NPCs projectile? A Bullet is TINY, an arrow would be MEDIUM and a staff blast is up to you!'),
                 new ListValue('Projectile Explosive Type', 'projectileExplosionType', ['NONE', 'SMALL', 'MEDIUM', 'LARGE' ], 'NONE').setTooltip('Whether or not the NPCs projectile is explosive. This currently bypasses grief prevention and should not be enabled for NPCs with possible access to protected areas.'),
+                new ListValue('Projectile Trail Type', 'projectileTrail', ['Crit', 'Smoke', 'LargeSmoke', 'Enchant', 'Lightning', 'Portal', 'Magic', 'Redstone', 'None'], 'None').setTooltip('Trail effect for the projectile.'),
+                new StringValue('Projectile Sound', 'projectileSound', 'NONE').setTooltip('Sound effect for the projectile.'),
 
                 // LOADOUT SETTINGS
-		new ListValue('MainHand Item (Item Name)', 'mainHandItemName', itemList, 'NONE').setTooltip('This is a predefined list of items and weapons NPCs are allowed to hold.'),
-		new ListValue('MainHand Item (Damage value)', 'mainHandItemDamage', damageList, '0').setTooltip('This is a predefined list of items and weapons NPCs are allowed to hold.'),
-		new ListValue('OffHand Item (Item Name)', 'offHandItemName', itemList, 'NONE').setTooltip('This is a predefined list of items and weapons NPCs are allowed to hold.'),
-		new ListValue('OffHand Item (Damage value)', 'offHandItemDamage', damageList, '0').setTooltip('This is a predefined list of items and weapons NPCs are allowed to hold.'),
-		new ListValue('Head Item (Item Name)', 'headItemName', itemList, 'NONE').setTooltip('This is a predefined list of items and weapons NPCs are allowed to hold.'),
-		new ListValue('Head Item (Damage value)', 'headItemDamage', damageList, '0').setTooltip('This is a predefined list of items and weapons NPCs are allowed to hold.'),
-		new ListValue('Chest Item (Item Name)', 'chestItemName', itemList, 'NONE').setTooltip('This is a predefined list of items and weapons NPCs are allowed to hold.'),
-		new ListValue('Chest Item (Damage value)', 'chestItemDamage', damageList, '0').setTooltip('This is a predefined list of items and weapons NPCs are allowed to hold.'),
-		new ListValue('Leg Item (Item Name)', 'legItemName', itemList, 'NONE').setTooltip('This is a predefined list of items and weapons NPCs are allowed to hold.'),
-		new ListValue('Leg Item (Damage value)', 'legItemDamage', damageList, '0').setTooltip('This is a predefined list of items and weapons NPCs are allowed to hold.'),
-		new ListValue('Feet Item (Item Name)', 'feetItemName', itemList, 'NONE').setTooltip('This is a predefined list of items and weapons NPCs are allowed to hold.'),
-		new ListValue('Feet Item (Damage value)', 'feetItemDamage', damageList, '0').setTooltip('This is a predefined list of items and weapons NPCs are allowed to hold.'),
 		new ListValue('Respawns', 'respawnSetting', ['ALWAYS', 'DAY', 'NIGHT', 'NEVER' ], 'ALWAYS').setTooltip('Sets when this NPC will respawn, if it does.'),
 		new ListValue('Respawn Delay', 'respawnDelay', ['INSTANT', '1MIN', '5MIN', '10MIN', '15MIN', '30MIN', '45MIN', '1HR', '2HR', '3HR', '4HR', '8HR', 'SERVERRESTART' ], '15MIN').setTooltip('Sets how long until this NPC respawns.'),
                 new ListValue('Respawns at original spawn location', 'respawnsAtSpawn', ['YES', 'NO' ], 'YES').setTooltip('Whether or not the class requires a permission to be professed as. The permission would be "skillapi.class.{className}"'),
                 new ListValue('Dead body is hidden', 'hideDeadBody', ['YES', 'NO' ], 'NO').setTooltip('Whether or not the class requires a permission to be professed as. The permission would be "skillapi.class.{className}"'),
                 new ListValue('Naturally Despawns', 'naturallyDespawns', ['YES', 'NO' ], 'NO').setTooltip('Whether or not the class requires a permission to be professed as. The permission would be "skillapi.class.{className}"'),
-		
                 new ListValue('Faction Importance', 'factionImportance', [ 'NONE', 'LOWEST', 'LOW', 'MEDIUM','HIGH', 'HIGHEST' ], 'NONE').setTooltip('Faction Importance controls the amount of reputation granted or lost from the faction this NPC belongs to when it is killed. It also affects the reputation with this factions enemies.'),
                 new ListValue('XP Dropped on Death', 'xpReward', experienceList, '0').setTooltip('Faction Importance controls the amount of reputation granted or lost from the faction this NPC belongs to when it is killed. It also affects the reputation with this factions enemies.'),
                 new ListValue('Movement Speed', 'movementSpeed', [ 'SLOWEST', 'SLOW', 'NORMAL', 'FAST', 'FASTEST' ], 'NORMAL').setTooltip('Whether or not the class requires a permission to be professed as. The permission would be "skillapi.class.{className}"'),
-                new ListValue('Movement Type', 'movementType', [ 'NONE', 'WANDERING', 'MOVINGPATH' ], 'Select a movement type').setTooltip('Defines whether or not this NPC can move, and if so, how it behaves.'),
-		new ListValue('Wandering Distance', 'wanderingDistance', wanderingList, '1').setTooltip('This is a predefined list of items and weapons NPCs are allowed to hold.')
+                new ListValue('Movement Type', 'movementType', [ 'NONE', 'WANDERING' ], 'Select a movement type').setTooltip('Defines whether or not this NPC can move, and if so, how it behaves.'),
+		new ListValue('Wandering Distance', 'wanderingDistance', wanderingList, '1').setTooltip('This is a predefined list of items and weapons NPCs are allowed to hold.'),
+		new StringListValue('World Lines', 'worldLines', []).setTooltip('Define up to 8 lines (one per line) for the NPC to say randomly when a player is nearby. Substitute @dp or {player} for the player name.'),
+		new StringListValue('Repeatable Unavailable Lines', 'repeatableUnavailableLines', []).setTooltip('Define up to 8 lines (one per line) for the NPC to say when a player attempts to talk to them when they arent eligible for a repeatable quest. Substitute @dp or {player} for the player name.'),
+		new StringListValue('Attack Lines', 'attackLines', []).setTooltip('Define up to 8 lines (one per line) for the NPC to say randomly when it attacks something'),
+		new StringListValue('Interact Lines', 'interactLines', []).setTooltip('Define up to 8 lines (one per line) for the NPC to say randomly when it is interacted with by a player.'),
+		new StringListValue('Kill Lines', 'killLines', []).setTooltip('Define up to 8 lines (one per line) for the NPC to say when it kills a player or NPC.'),
+		new StringListValue('Killed Lines', 'killedLines', []).setTooltip('Define up to 8 lines (one per line) for the NPC to say when it is killed by a player or NPC.')
+
 
 //              new ListValue('Parent', 'parent', ['None'], 'None').setTooltip('The class that turns into this one. For example, if Fighter turns into Knight, then Knight would have its parent as Fighter'),
 //		new ListValue('Permission', 'needs-permission', ['True', 'False'], 'False').setTooltip('Whether or not the class requires a permission to be professed as. The permission would be "skillapi.class.{className}"'),
@@ -167,17 +161,34 @@ Skill.prototype.createFormHTML = function()
 	header.innerHTML = 'NPC Details';
 	form.appendChild(header);
 	
+	var done = document.createElement('h5');
+	done.className = 'doneButton';
+	done.innerHTML = 'Menu',
+	done.skill = this;
+	done.form = form;
+	done.addEventListener('click', function(e) {
+		this.skill.update();
+		var list = document.getElementById('skillList');
+		list[list.selectedIndex].text = this.skill.data[0].value;
+		this.form.parentNode.removeChild(this.form);
+		showSkillPage('builder');
+	});
+	form.appendChild(done);
+	
+	var target = document.getElementById('skillForm');
+	target.innerHTML = '';
+	target.appendChild(form);
 	var h = document.createElement('hr');
 	form.appendChild(h);
 	
-	this.data[3].list.splice(1, this.data[3].list.length - 1);
-	for (var i = 0; i < skills.length; i++)
-	{
-		if (skills[i] != this) 
-		{
-			this.data[3].list.push(skills[i].data[0].value);
-		}
-	}
+//	this.data[3].list.splice(1, this.data[3].list.length - 1);
+//	for (var i = 0; i < skills.length; i++)
+//	{
+//		if (skills[i] != this) 
+//		{
+//			this.data[3].list.push(skills[i].data[0].value);
+//		}
+//	}
 	for (var i = 0; i < this.data.length; i++)
 	{
             if (this.data[i].name == 'Name') {
@@ -220,11 +231,6 @@ Skill.prototype.createFormHTML = function()
                 header.innerHTML = 'Ranged Projectile Settings';
                 form.appendChild(header);
             }
-            if (this.data[i].name == 'MainHand Item (Item Name)') {
-                var header = document.createElement('h4');
-                header.innerHTML = 'Loadout';
-                form.appendChild(header);
-            }
             if (this.data[i].name == 'Respawns') {
                 var header = document.createElement('h4');
                 header.innerHTML = 'Death and Respawn Handling';
@@ -240,29 +246,16 @@ Skill.prototype.createFormHTML = function()
                 header.innerHTML = 'Movement Settings';
                 form.appendChild(header);
             }
+            if (this.data[i].name == 'World Lines') {
+                var header = document.createElement('h4');
+                header.innerHTML = 'Interaction Settings';
+                form.appendChild(header);
+            }
 		this.data[i].createHTML(form);
 	}
 	
 	var hr = document.createElement('hr');
 	form.appendChild(hr);
-	
-	var done = document.createElement('h5');
-	done.className = 'doneButton';
-	done.innerHTML = 'Edit Advanced Settings',
-	done.skill = this;
-	done.form = form;
-	done.addEventListener('click', function(e) {
-		this.skill.update();
-		var list = document.getElementById('skillList');
-		list[list.selectedIndex].text = this.skill.data[0].value;
-		this.form.parentNode.removeChild(this.form);
-		showSkillPage('builder');
-	});
-	form.appendChild(done);
-	
-	var target = document.getElementById('skillForm');
-	target.innerHTML = '';
-	target.appendChild(form);
 }
 
 /**
@@ -315,7 +308,7 @@ Skill.prototype.getSaveString = function()
 {
 	var saveString = '';
 	
-	saveString += this.data[0].value + ":\n";
+	saveString += "npc:\n";
 	for (var i = 0; i < this.data.length; i++)
 	{
 		if (this.data[i] instanceof AttributeValue) continue;

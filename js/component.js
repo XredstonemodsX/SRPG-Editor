@@ -16,7 +16,7 @@ function canDrop(thing, target) {
  */
 var Type = {
     TRIGGER   : 'setting',
-    TARGET    : 'movementOption',
+    TARGET    : 'standalone-setting',
     CONDITION : 'condition',
     MECHANIC  : 'mechanic'
 };
@@ -38,7 +38,14 @@ var Trigger = {
 //    TOOK_PHYSICAL_DAMAGE : { name: 'Took Physical Damage', container: true, construct: TriggerTookPhysicalDamage },
 //    TOOK_SKILL_DAMAGE    : { name: 'Took Skill Damage',    container: true, construct: TriggerTookSkillDamage    },
     NPC_CLONE  : { name: 'Spawn Location',   container: false, construct: SpawnLocation  },
-    DROPPED_ITEM : { name: 'Dropped Item', container: false, construct: DroppedItem }
+    ASSIGNED_DIALOG : { name: 'Assigned Dialog', container: false, construct: AssignedDialog },
+    DROPPED_ITEM : { name: 'Dropped Item', container: false, construct: DroppedItem },
+    HEAD_SLOT : { name: 'Equipped Head Slot Item', container: false, construct: EquippedHeadSlot },
+    CHEST_SLOT : { name: 'Equipped Chest Slot Item', container: false, construct: EquippedChestSlot },
+    LEG_SLOT : { name: 'Equipped Leg Slot Item', container: false, construct: EquippedLegSlot },
+    FEET_SLOT : { name: 'Equipped Foot Slot Item', container: false, construct: EquippedFeetSlot },
+    MAINHAND_SLOT : { name: 'Equipped Mainhand Slot Item', container: false, construct: EquippedMainHandSlot },
+    OFFHAND_SLOT : { name: 'Equipped Offhand Slot Item', container: false, construct: EquippedOffHandSlot }
 };
 
 /**
@@ -646,23 +653,73 @@ function SpawnLocation()
 {
     this.super('SpawnLocation', Type.TARGET, false);
     
-    this.description = 'Define an additional NPC spawn location.<br/><font color="red">Setting any of the below options to NONE will cause them to inherit from the parent config file, with the exception of the spawn location details and Faction.</font>';
+    this.description = 'Define an additional NPC spawn location.<br/><font color="red">Setting any of the below options to NONE will cause them to inherit from the parent config file, with the exception of:<br/>- Spawn Details<br/>- Size</br>- Faction</font>';
     
     this.data.push(new StringValue('Name', 'name', 'NONE').setTooltip('Name of the cloned NPC.'));
     this.data.push(new StringValue('Title', 'title', 'NONE').setTooltip('Title of the cloned NPC.'));
     this.data.push(new IntValue('Spawn X Position', 'spawnX', 0).setTooltip('The maximum level the class can reach. If this class turns into other classes, this will also be the level it can profess into those classes.'));
     this.data.push(new IntValue('Spawn Y Position', 'spawnY', 0).setTooltip('The maximum level the class can reach. If this class turns into other classes, this will also be the level it can profess into those classes.'));
     this.data.push(new IntValue('Spawn Z Position', 'spawnZ', 0).setTooltip('The maximum level the class can reach. If this class turns into other classes, this will also be the level it can profess into those classes.'));
-    this.data.push(new ListValue('Spawn Dimension', 'movingType', dimensionList, 'Earth').setTooltip('Sets the name of the dimension that this clone spawns on.')); 
+    this.data.push(new ListValue('Spawn Dimension', 'spawnDimension', dimensionList, 'Earth').setTooltip('Sets the name of the dimension that this clone spawns on.')); 
     this.data.push(new ListValue('Rotation Behavior', 'rotationBehavior', ['NONE', 'HeadRotation', 'NoRotation', 'RotateBody', 'Stalking' ], 'NONE').setTooltip('Whether or not the class requires a permission to be professed as. The permission would be "skillapi.class.{className}"'));
     this.data.push(new IntValue('Rotation Angle', 'rotation', 0).setTooltip('The maximum level the class can reach. If this class turns into other classes, this will also be the level it can profess into those classes.'));
     this.data.push(new ListValue('Gender', 'gender', [ 'NONE', 'MALE', 'FEMALE' ], 'NONE').setTooltip('Defines if this clone is male or female'));
+    this.data.push(new ListValue('Movement Type', 'movementType', [ 'NONE', 'WANDERING', 'STANDING' ], 'Select a movement type').setTooltip('Defines whether or not this NPC can move, and if so, how it behaves.'));
+    this.data.push(new ListValue('Model', 'modelType', modelList, 'NONE').setTooltip('The model that this NPC uses. This can be one of many used in-game.'));
+    this.data.push(new IntValue('Size', 'size', 5).setTooltip('The maximum level the class can reach. If this class turns into other classes, this will also be the level it can profess into those classes.'));
     this.data.push(new ListValue('Texture Type', 'textureType', [ 'NONE', 'WEB', 'RESOURCE' ], 'NONE'));
     this.data.push(new StringValue('Texture Link', 'textureUri', 'NONE').setTooltip('A class group are things such as "race", "class", and "trade". Different groups can be professed through at the same time, one class from each group'));
     this.data.push(new ListValue('Faction', 'faction', factionList, 'Faction').setTooltip('The item that represents the class in GUIs'));
     
 }
-
+extend('EquippedHeadSlot', 'Component');
+function EquippedHeadSlot()
+{
+    this.super('EquippedHeadSlot', Type.TARGET, false);
+    this.description = 'Defines an item to be placed into the head inventory slot for the npc.<br/><font color="red">There must not be more than 1 of these defined for a single NPC config file.</font>';
+    this.data.push(new ListValue('Item Name', 'itemName', itemList, 'NONE').setTooltip('This is a predefined list of items that can be dropped.'));
+    this.data.push(new ListValue('Damage Value', 'damageValue', damageList, '0').setTooltip('This is a predefined list of items and weapons NPCs are allowed to hold.'));
+}
+extend('EquippedChestSlot', 'Component');
+function EquippedChestSlot()
+{
+    this.super('EquippedChestSlot', Type.TARGET, false);
+    this.description = 'Defines an item to be placed into the chest inventory slot for the npc.<br/><font color="red">There must not be more than 1 of these defined for a single NPC config file.</font>';
+    this.data.push(new ListValue('Item Name', 'itemName', itemList, 'NONE').setTooltip('This is a predefined list of items that can be dropped.'));
+    this.data.push(new ListValue('Damage Value', 'damageValue', damageList, '0').setTooltip('This is a predefined list of items and weapons NPCs are allowed to hold.'));
+}
+extend('EquippedLegSlot', 'Component');
+function EquippedLegSlot()
+{
+    this.super('EquippedLegSlot', Type.TARGET, false);
+    this.description = 'Defines an item to be placed into the leg inventory slot for the npc.<br/><font color="red">There must not be more than 1 of these defined for a single NPC config file.</font>';
+    this.data.push(new ListValue('Item Name', 'itemName', itemList, 'NONE').setTooltip('This is a predefined list of items that can be dropped.'));
+    this.data.push(new ListValue('Damage Value', 'damageValue', damageList, '0').setTooltip('This is a predefined list of items and weapons NPCs are allowed to hold.'));
+}
+extend('EquippedFeetSlot', 'Component');
+function EquippedFeetSlot()
+{
+    this.super('EquippedFeetSlot', Type.TARGET, false);
+    this.description = 'Defines an item to be placed into the feet inventory slot for the npc.<br/><font color="red">There must not be more than 1 of these defined for a single NPC config file.</font>';
+    this.data.push(new ListValue('Item Name', 'itemName', itemList, 'NONE').setTooltip('This is a predefined list of items that can be dropped.'));
+    this.data.push(new ListValue('Damage Value', 'damageValue', damageList, '0').setTooltip('This is a predefined list of items and weapons NPCs are allowed to hold.'));
+}
+extend('EquippedMainHandSlot', 'Component');
+function EquippedMainHandSlot()
+{
+    this.super('EquippedMainHandSlot', Type.TARGET, false);
+    this.description = 'Defines an item to be placed into the main hand inventory slot for the npc.<br/><font color="red">There must not be more than 1 of these defined for a single NPC config file.</font>';
+    this.data.push(new ListValue('Item Name', 'itemName', itemList, 'NONE').setTooltip('This is a predefined list of items that can be dropped.'));
+    this.data.push(new ListValue('Damage Value', 'damageValue', damageList, '0').setTooltip('This is a predefined list of items and weapons NPCs are allowed to hold.'));
+}
+extend('EquippedOffHandSlot', 'Component');
+function EquippedOffHandSlot()
+{
+    this.super('EquippedOffHandSlot', Type.TARGET, false);
+    this.description = 'Defines an item to be placed into the off hand inventory slot for the npc.<br/><font color="red">There must not be more than 1 of these defined for a single NPC config file.</font>';
+    this.data.push(new ListValue('Item Name', 'itemName', itemList, 'NONE').setTooltip('This is a predefined list of items that can be dropped.'));
+    this.data.push(new ListValue('Damage Value', 'damageValue', damageList, '0').setTooltip('This is a predefined list of items and weapons NPCs are allowed to hold.'));
+}
 
 extend('DroppedItem', 'Component');
 function DroppedItem()
@@ -675,6 +732,13 @@ function DroppedItem()
     this.data.push(new ListValue('Chance to drop', 'chance', chanceList, '0').setTooltip('This is a predefined list of items and weapons NPCs are allowed to hold.'));
 }
 
+extend('AssignedDialog', 'Component');
+function AssignedDialog()
+{
+    this.super('AssignedDialog', Type.TARGET, false);
+    this.description = 'Defines a dialog to be assigned to this NPC.<br/><font color="red">There must not be more than 12 of these defined for a single NPC config file.</font>';
+    this.data.push(new StringValue('Dialog Name', 'dialogName', 'NONE').setTooltip('This is the name of the dialog to be mapped to this NPC.'));
+}
 extend('TriggerSkillDamage', 'Component');
 function TriggerSkillDamage()
 {

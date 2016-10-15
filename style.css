@@ -269,7 +269,7 @@ input, select, textarea {
 }
 
 .doneButton:hover {
-	background-color: white
+	background-color: white;
 	color: red;
 }
 
