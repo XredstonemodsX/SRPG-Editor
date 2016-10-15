@@ -22,7 +22,13 @@
  * THE SOFTWARE.
  */
  
-var ATTRIBS = [ ];
+var ATTRIBS = [
+    'vitality',
+    'spirit',
+    'intelligence',
+    'dexterity',
+    'strength'
+];
 
 depend('sounds');
 depend('filter');

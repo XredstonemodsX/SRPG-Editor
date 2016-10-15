@@ -161,20 +161,6 @@ Skill.prototype.createFormHTML = function()
 	header.innerHTML = 'NPC Details';
 	form.appendChild(header);
 	
-	var done = document.createElement('h5');
-	done.className = 'doneButton';
-	done.innerHTML = 'Menu',
-	done.skill = this;
-	done.form = form;
-	done.addEventListener('click', function(e) {
-		this.skill.update();
-		var list = document.getElementById('skillList');
-		list[list.selectedIndex].text = this.skill.data[0].value;
-		this.form.parentNode.removeChild(this.form);
-		showSkillPage('builder');
-	});
-	form.appendChild(done);
-	
 	var target = document.getElementById('skillForm');
 	target.innerHTML = '';
 	target.appendChild(form);
@@ -256,6 +242,21 @@ Skill.prototype.createFormHTML = function()
 	
 	var hr = document.createElement('hr');
 	form.appendChild(hr);
+
+	
+	var done = document.createElement('h5');
+	done.className = 'doneButton';
+	done.innerHTML = 'Menu',
+	done.skill = this;
+	done.form = form;
+	done.addEventListener('click', function(e) {
+		this.skill.update();
+		var list = document.getElementById('skillList');
+		list[list.selectedIndex].text = this.skill.data[0].value;
+		this.form.parentNode.removeChild(this.form);
+		showSkillPage('builder');
+	});
+	form.appendChild(done);
 }
 
 /**
