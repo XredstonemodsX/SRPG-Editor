@@ -17,12 +17,6 @@ var dyeList = [
 	'Yellow'
 ];
 
-var itemList = [
-    "NONE",
-    "flansmod:p90",
-    "flansmod:matokStaff"
-];
-
 var soundList = [
     "NONE"
 ];
