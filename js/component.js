@@ -651,7 +651,7 @@ function TriggerPhysicalDamage()
 extend('SpawnLocation', 'Component');
 function SpawnLocation()
 {
-    this.super('SpawnLocation', Type.TRIGGER, false);
+    this.super('SpawnLocation', Type.TARGET, false);
     
     this.description = 'Define an additional NPC spawn location.<br/><font color="red">Setting any of the below options to NONE will cause them to inherit from the parent config file, with the exception of:<br/>- Spawn Details<br/>- Size</br>- Faction</font>';
     
