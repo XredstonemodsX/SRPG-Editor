@@ -675,7 +675,7 @@ function SpawnLocation()
 extend('EquippedHeadSlot', 'Component');
 function EquippedHeadSlot()
 {
-    this.super('EquippedHeadSlot', Type.TRIGGER, false);
+    this.super('EquippedHeadSlot', Type.TARGET, false);
     this.description = 'Defines an item to be placed into the head inventory slot for the npc.<br/><font color="red">There must not be more than 1 of these defined for a single NPC config file.</font>';
     this.data.push(new ListValue('Item Name', 'itemName', itemList, 'NONE').setTooltip('This is a predefined list of items that can be dropped.'));
     this.data.push(new ListValue('Damage Value', 'damageValue', damageList, '0').setTooltip('This is a predefined list of items and weapons NPCs are allowed to hold.'));
@@ -683,7 +683,7 @@ function EquippedHeadSlot()
 extend('EquippedChestSlot', 'Component');
 function EquippedChestSlot()
 {
-    this.super('EquippedChestSlot', Type.TRIGGER, false);
+    this.super('EquippedChestSlot', Type.TARGET, false);
     this.description = 'Defines an item to be placed into the chest inventory slot for the npc.<br/><font color="red">There must not be more than 1 of these defined for a single NPC config file.</font>';
     this.data.push(new ListValue('Item Name', 'itemName', itemList, 'NONE').setTooltip('This is a predefined list of items that can be dropped.'));
     this.data.push(new ListValue('Damage Value', 'damageValue', damageList, '0').setTooltip('This is a predefined list of items and weapons NPCs are allowed to hold.'));
@@ -691,7 +691,7 @@ function EquippedChestSlot()
 extend('EquippedLegSlot', 'Component');
 function EquippedLegSlot()
 {
-    this.super('EquippedLegSlot', Type.TRIGGER, false);
+    this.super('EquippedLegSlot', Type.TARGET, false);
     this.description = 'Defines an item to be placed into the leg inventory slot for the npc.<br/><font color="red">There must not be more than 1 of these defined for a single NPC config file.</font>';
     this.data.push(new ListValue('Item Name', 'itemName', itemList, 'NONE').setTooltip('This is a predefined list of items that can be dropped.'));
     this.data.push(new ListValue('Damage Value', 'damageValue', damageList, '0').setTooltip('This is a predefined list of items and weapons NPCs are allowed to hold.'));
@@ -699,7 +699,7 @@ function EquippedLegSlot()
 extend('EquippedFeetSlot', 'Component');
 function EquippedFeetSlot()
 {
-    this.super('EquippedFeetSlot', Type.TRIGGER, false);
+    this.super('EquippedFeetSlot', Type.TARGET, false);
     this.description = 'Defines an item to be placed into the feet inventory slot for the npc.<br/><font color="red">There must not be more than 1 of these defined for a single NPC config file.</font>';
     this.data.push(new ListValue('Item Name', 'itemName', itemList, 'NONE').setTooltip('This is a predefined list of items that can be dropped.'));
     this.data.push(new ListValue('Damage Value', 'damageValue', damageList, '0').setTooltip('This is a predefined list of items and weapons NPCs are allowed to hold.'));
@@ -707,7 +707,7 @@ function EquippedFeetSlot()
 extend('EquippedMainHandSlot', 'Component');
 function EquippedMainHandSlot()
 {
-    this.super('EquippedMainHandSlot', Type.TRIGGER, false);
+    this.super('EquippedMainHandSlot', Type.TARGET, false);
     this.description = 'Defines an item to be placed into the main hand inventory slot for the npc.<br/><font color="red">There must not be more than 1 of these defined for a single NPC config file.</font>';
     this.data.push(new ListValue('Item Name', 'itemName', itemList, 'NONE').setTooltip('This is a predefined list of items that can be dropped.'));
     this.data.push(new ListValue('Damage Value', 'damageValue', damageList, '0').setTooltip('This is a predefined list of items and weapons NPCs are allowed to hold.'));
@@ -715,7 +715,7 @@ function EquippedMainHandSlot()
 extend('EquippedOffHandSlot', 'Component');
 function EquippedOffHandSlot()
 {
-    this.super('EquippedOffHandSlot', Type.TRIGGER, false);
+    this.super('EquippedOffHandSlot', Type.TARGET, false);
     this.description = 'Defines an item to be placed into the off hand inventory slot for the npc.<br/><font color="red">There must not be more than 1 of these defined for a single NPC config file.</font>';
     this.data.push(new ListValue('Item Name', 'itemName', itemList, 'NONE').setTooltip('This is a predefined list of items that can be dropped.'));
     this.data.push(new ListValue('Damage Value', 'damageValue', damageList, '0').setTooltip('This is a predefined list of items and weapons NPCs are allowed to hold.'));
@@ -724,7 +724,7 @@ function EquippedOffHandSlot()
 extend('DroppedItem', 'Component');
 function DroppedItem()
 {
-    this.super('DroppedItem', Type.TRIGGER, false);
+    this.super('DroppedItem', Type.TARGET, false);
     this.description = 'Defines an dropped item by this NPC when it dies.<br/><font color="red">There must not be more than 9 of these defined for a single NPC config file.</font>';
     this.data.push(new ListValue('Item Name', 'itemName', itemList, 'NONE').setTooltip('This is a predefined list of items that can be dropped.'));
     this.data.push(new ListValue('Damage Value', 'damageValue', damageList, '0').setTooltip('This is a predefined list of items and weapons NPCs are allowed to hold.'));
