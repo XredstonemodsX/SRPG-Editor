@@ -325,7 +325,7 @@ Skill.prototype.getSaveString = function()
 //	}
 	if (this.components.length > 0)
 	{
-		saveString += '  advancedSettings:\n';
+		saveString += '  components:\n';
 		saveIndex = 0;
 		for (var i = 0; i < this.components.length; i++)
 		{

@@ -202,9 +202,6 @@ window.onload = function()
 		switchToSkills();
         
 	});
-	document.getElementById('classTab').addEventListener('click', function(e) {
-		switchToClasses();
-	});
 	
 	var cancelButtons = document.querySelectorAll('.cancelButton');
 	for (var i = 0; i < cancelButtons.length; i++)
@@ -372,7 +369,7 @@ function loadIndividual(e) {
     {
         loadAttributes(e);
     }
-	else if (text.indexOf('advancedSettings:') >= 0 || (text.indexOf('group:') == -1 && text.indexOf('combo:') == -1 && text.indexOf('skills:') == -1))
+	else if (text.indexOf('components:') >= 0 || (text.indexOf('group:') == -1 && text.indexOf('combo:') == -1 && text.indexOf('skills:') == -1))
 	{
 		loadSkills(e);
 	}
