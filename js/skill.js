@@ -65,8 +65,10 @@ function Skill(name)
                 new IntValue('Tactical Distance', 'tacticalDistance', 15).setTooltip('The maximum level the class can reach. If this class turns into other classes, this will also be the level it can profess into those classes.'),
                 new ListValue('Tactical Behavior', 'tacticalBehavior', [ 'SURROUND', 'AMBUSH', 'HITNRUN', 'DODGE', 'STALK', 'NONE' ], 'NONE').setTooltip('Whether or not the class requires a permission to be professed as. The permission would be "skillapi.class.{className}"'),
                 new IntValue('Aggro Distance', 'aggroDistance', 48).setTooltip('The maximum level the class can reach. If this class turns into other classes, this will also be the level it can profess into those classes.'),
-                new ListValue('Ranged Weapon Usage', 'rangedBehavior', [ 'ALWAYS', 'UNTILCLOSE', 'WHENMOVING', 'NEVER' ], 'NEVER').setTooltip('Whether or not the class requires a permission to be professed as. The permission would be "skillapi.class.{className}"'),
+                new ListValue('Ranged Weapon Usage', 'rangedBehavior', [ 'ALWAYS', 'UNTILCLOSE', 'WHENMOVING' ], 'ALWAYS').setTooltip('Whether or not the class requires a permission to be professed as. The permission would be "skillapi.class.{className}"'),
                 new ListValue('Aim when shooting with ranged weapon', 'aimWhileShooting', ['YES', 'NO' ], 'NO').setTooltip('Whether or not the class requires a permission to be professed as. The permission would be "skillapi.class.{className}"'),
+                new ListValue('Fire Wildly', 'fireIndirectly', [ 'FAR', 'SUPRISE', 'NONE' ], 'NONE').setTooltip('Whether or not the class requires a permission to be professed as. The permission would be "skillapi.class.{className}"'),
+                new ListValue('Leap at enemies', 'canLeap', [ 'YES', 'NO' ], 'NO').setTooltip('Whether or not the class requires a permission to be professed as. The permission would be "skillapi.class.{className}"'),
 
                 // GENERAL STATS
                 new IntValue('Maximum Health', 'maxHealth', 100).setTooltip('The maximum level the class can reach. If this class turns into other classes, this will also be the level it can profess into those classes.'),
@@ -89,7 +91,7 @@ function Skill(name)
                 
                // RANGED OFFENSIVE STATS
 		new ListValue('Ranged Range', 'rangedRange', ['LOWEST', 'LOW', 'MEDIUM','HIGH', 'HIGHEST', 'CRAZY', 'INSANE' ], 'NONE').setTooltip('Whether or not the class requires a permission to be professed as. The permission would be "skillapi.class.{className}"'),
-		new ListValue('Ranged Damage', 'meleeDamage', ['LOWEST', 'LOW', 'MEDIUM','HIGH', 'HIGHEST', 'CRAZY', 'INSANE' ], 'NONE').setTooltip('Whether or not the class requires a permission to be professed as. The permission would be "skillapi.class.{className}"'),
+		new ListValue('Ranged Damage', 'rangedDamage', ['LOWEST', 'LOW', 'MEDIUM','HIGH', 'HIGHEST', 'CRAZY', 'INSANE' ], 'NONE').setTooltip('Whether or not the class requires a permission to be professed as. The permission would be "skillapi.class.{className}"'),
 		new ListValue('Ranged Knockback', 'rangedKnockback', ['NONE', 'LOWEST', 'LOW', 'MEDIUM','HIGH', 'HIGHEST', 'CRAZY', 'INSANE' ], 'NONE').setTooltip('Whether or not the class requires a permission to be professed as. The permission would be "skillapi.class.{className}"'),
 
                 // RANGED PROJECTILE SETTINGS
@@ -97,7 +99,7 @@ function Skill(name)
 		new ListValue('Ranged Projectile Appearance', 'projectileAppearance', ['ARROW', 'BULLET', 'BLUEPLASMA', 'REDPLASMA', 'WHITEPLASMA' , 'GOLDPLASMA'], 'ARROW').setTooltip('What does the projectile this NPC has appear to look like?'),
 		new ListValue('Ranged Projectile Size', 'projectileSize', ['TINY' , 'SMALL', 'MEDIUM', 'LARGE', 'HUGE' ], 'TINY').setTooltip('What is the size of the NPCs projectile? A Bullet is TINY, an arrow would be MEDIUM and a staff blast is up to you!'),
                 new ListValue('Projectile Explosive Type', 'projectileExplosionType', ['NONE', 'SMALL', 'MEDIUM', 'LARGE' ], 'NONE').setTooltip('Whether or not the NPCs projectile is explosive. This currently bypasses grief prevention and should not be enabled for NPCs with possible access to protected areas.'),
-                new ListValue('Projectile Trail Type', 'projectileTrail', ['Crit', 'Smoke', 'LargeSmoke', 'Enchant', 'Lightning', 'Portal', 'Magic', 'Redstone', 'None'], 'None').setTooltip('Trail effect for the projectile.'),
+                new ListValue('Projectile Trail Type', 'projectileTrail', ['Crit', 'Smoke', 'LargeSmoke', 'Enchant', 'Lightning', 'Portal', 'Magic', 'Redstone', 'None' ], 'None').setTooltip('Trail effect for the projectile.'),
                 new StringValue('Projectile Sound', 'projectileSound', 'NONE').setTooltip('Sound effect for the projectile.'),
 
                 // LOADOUT SETTINGS
@@ -111,7 +113,11 @@ function Skill(name)
                 new ListValue('Movement Speed', 'movementSpeed', [ 'SLOWEST', 'SLOW', 'NORMAL', 'FAST', 'FASTEST' ], 'NORMAL').setTooltip('Whether or not the class requires a permission to be professed as. The permission would be "skillapi.class.{className}"'),
                 new ListValue('Movement Type', 'movementType', [ 'NONE', 'WANDERING' ], 'Select a movement type').setTooltip('Defines whether or not this NPC can move, and if so, how it behaves.'),
 		new ListValue('Wandering Distance', 'wanderingDistance', wanderingList, '1').setTooltip('This is a predefined list of items and weapons NPCs are allowed to hold.'),
-		new StringListValue('World Lines', 'worldLines', []).setTooltip('Define up to 8 lines (one per line) for the NPC to say randomly when a player is nearby. Substitute @dp or {player} for the player name.'),
+                new ListValue('Stop on Interact', 'stopOnInteract', ['YES', 'NO' ], 'NO').setTooltip('Whether or not the class requires a permission to be professed as. The permission would be "skillapi.class.{className}"'),
+                new ListValue('Pause when following path', 'pauseWhenFollowingPath', ['YES', 'NO' ], 'NO').setTooltip('Whether or not the class requires a permission to be professed as. The permission would be "skillapi.class.{className}"'),
+                new ListValue('Returns to Start', 'returnsToStart', ['YES', 'NO' ], 'NO').setTooltip('Whether or not the class requires a permission to be professed as. The permission would be "skillapi.class.{className}"'),
+                new ListValue('Say Lines in Random Order', 'randomLines', ['YES', 'NO' ], 'NO').setTooltip('Whether or not the class requires a permission to be professed as. The permission would be "skillapi.class.{className}"'),
+                new StringListValue('World Lines', 'worldLines', []).setTooltip('Define up to 8 lines (one per line) for the NPC to say randomly when a player is nearby. Substitute @dp or {player} for the player name.'),
 		new StringListValue('Repeatable Unavailable Lines', 'repeatableUnavailableLines', []).setTooltip('Define up to 8 lines (one per line) for the NPC to say when a player attempts to talk to them when they arent eligible for a repeatable quest. Substitute @dp or {player} for the player name.'),
 		new StringListValue('Attack Lines', 'attackLines', []).setTooltip('Define up to 8 lines (one per line) for the NPC to say randomly when it attacks something'),
 		new StringListValue('Interact Lines', 'interactLines', []).setTooltip('Define up to 8 lines (one per line) for the NPC to say randomly when it is interacted with by a player.'),
@@ -232,7 +238,7 @@ Skill.prototype.createFormHTML = function()
                 header.innerHTML = 'Movement Settings';
                 form.appendChild(header);
             }
-            if (this.data[i].name == 'World Lines') {
+            if (this.data[i].name == 'Say Lines in Random Order') {
                 var header = document.createElement('h4');
                 header.innerHTML = 'Interaction Settings';
                 form.appendChild(header);
