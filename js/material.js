@@ -38,7 +38,10 @@ var factionList = [
     'Midway Crew',
     'Tollan',
     'Ori',
-    'Ascended'
+    'Ascended',
+    'Generic Hostile',
+    'Generic Friendly',
+    'Generic Neutral'
 ];
 var jobList = [
     'None',
