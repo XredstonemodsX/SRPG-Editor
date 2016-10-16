@@ -23,9 +23,9 @@ function Skill(name)
             
                 // GENERAL SETTINGS
                 
-		new StringValue('Name', 'name', name).setTooltip('The name of the class. This should not contain color codes'),
-		new StringValue('Title', 'title', 'NONE').setTooltip('The prefix given to players who profess as the class which can contain color codes'),
-		new StringValue('Template', 'template', 'NONE').setTooltip('A class group are things such as "race", "class", and "trade". Different groups can be professed through at the same time, one class from each group'),
+		new StringValue('Name', 'name', name).setTooltip('This is the name of the NPC. It should be unique to this config file.'),
+		new StringValue('Title', 'title', 'NONE').setTooltip('The title of this NPC. It should describe the purpose of this NPC (eg: Marketeer, Shield Vendor, Major General) in as little words as possible.'),
+		new StringValue('Template', 'template', 'NONE').setTooltip('Templates are presently not used (and are unlikely to ever be) - leave this as NONE.'),
                 new ListValue('Texture Type', 'textureType', [ 'WEB', 'RESOURCE' ], 'RESOURCE').setTooltip('Set the texture link type.'),
 		new StringValue('Texture Link', 'textureUri', 'NONE').setTooltip('A class group are things such as "race", "class", and "trade". Different groups can be professed through at the same time, one class from each group'),
 		new StringValue('Cape Texture Link', 'capeTexture', 'NONE').setTooltip('A class group are things such as "race", "class", and "trade". Different groups can be professed through at the same time, one class from each group'),
