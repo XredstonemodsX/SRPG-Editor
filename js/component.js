@@ -289,8 +289,8 @@ Component.prototype.createBuilderHTML = function(target)
     }
     
     // Add the duplicate button
-//    if (this.type != Type.TRIGGER)
-//    {
+   if (this.name == "SpawnLocation" || this.name == "MovingPathStep" || this.name == "AssignedDialog" || this.name == "DroppedItem")
+    {
         var duplicate = document.createElement('div');
         duplicate.className = 'builderButton smallButton';
         duplicate.title = 'Duplicate';
@@ -303,7 +303,7 @@ Component.prototype.createBuilderHTML = function(target)
             copy.createBuilderHTML(comp.parent.html);
         });
         div.appendChild(duplicate);
-//    }
+    }
     
     // Add the remove button
     var remove = document.createElement('div');
