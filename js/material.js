@@ -26,7 +26,19 @@ var factionList = [
     'Atlantis Expedition',
     'Destiny Expedition',
     'Goauld',
-    'Wraith'
+    'Wraith',
+    'Ancients',
+    'Asgard',
+    'Asurans',
+    'Athosians',
+    'Free Jaffa Nation',
+    'Genii',
+    'Lucian Alliance',
+    'Nakai',
+    'Midway Crew',
+    'Tollan',
+    'Ori',
+    'Ascended'
 ];
 var jobList = [
     'None',
